@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-reset {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: palevioletred;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    padding: 10px;
+}
+
+input[type="number"] {
+    padding: 0 10px;
+    border: 1px  solid #cccccc;
+    border-radius: 5px;
+}
+
+.grid-container {
+    border: 2px solid black;
+    height: 400px;
+    width: 400px;
+    margin-top: 25px;
+    display: grid;
+    grid-template: repeat(16, 1fr) / repeat(16, 1fr);
+}

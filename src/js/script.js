@@ -1,5 +1,6 @@
 const grid = document.querySelector("#grid");
 let gridSize = 16;
+let mode = "pen";
 
 // Removes the child elements of the grid
 function clearGrid() {
@@ -11,7 +12,14 @@ function clearGrid() {
 
 // mouseenter event handler
 function draw(event) {
-    event.target.style.backgroundColor = "black";
+    if(event.buttons === 1 && mode === "pen")
+        event.target.style.backgroundColor = "black";
+    else if(event.buttons === 1 && mode === "eraser")
+        event.target.style.backgroundColor = "white";
+    else if(event.buttons === 1 && mode === "rainbow") {
+        const randomColor = Math.floor(Math.random()*16777215).toString(16);
+        event.target.style.backgroundColor = "#" + randomColor;
+    }
 }
 
 // Creates a grid of dimensions gridSize * gridSize
@@ -23,7 +31,7 @@ function createGrid(size) {
         const pixel = document.createElement("div");
         pixel.setAttribute("class", "pixel");
         grid.appendChild(pixel);
-        pixel.addEventListener("click", draw);
+        pixel.addEventListener("mouseover", draw);
     }
 }
 createGrid(gridSize);
@@ -41,4 +49,16 @@ document.querySelector(".btn-reset").addEventListener("click", resetGrid);
 document.querySelector("#size").addEventListener("change", () => {
     gridSize = document.querySelector("#size").value;
     createGrid(gridSize);
+});
+
+document.querySelector(".btn-eraser").addEventListener("click", () => {
+    mode = "eraser";
+});
+
+document.querySelector(".btn-pen").addEventListener("click", () => {
+    mode = "pen";
+});
+
+document.querySelector(".btn-rainbow").addEventListener("click", () => {
+    mode = "rainbow";
 });
